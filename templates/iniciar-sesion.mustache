@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>Iniciar Sesion</title>
+    {{> header}}
+  </head>
+  <body>
+    <form action="/iniciar-sesion" method="POST" id="signin">
+        <h1>Iniciar Sesion</h1>
+        <label>Entrar como:</label><br>
+        <select name="username">
+          {{#users}}
+            <option value="{{id}}">{{name}}</option>
+          {{/users}}
+        </select><br>
+        <label>Contrasena:</label><br>
+        <input name="password" type="password"><br>
+        <label>Email para notificaciones:</label><br>
+        <input name="default_email" type="text" value="{{default_email}}"><br>
+        <input
+          name="search"
+          type="submit"
+          value="Entrar"
+        >
+    </form>
+  </body>
+</html>

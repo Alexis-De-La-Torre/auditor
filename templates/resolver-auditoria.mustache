@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    {{> header}}
+</head>
+<body>
+    {{> menu}}
+   <div id="container">
+        <h1>Detalles del Caso:</h1>
+        <strong>Fecha de recepción:</strong> {{reception_date}} <br>
+        <strong>Fecha de venta:</strong> {{sale_date}} <br>
+        <strong>No. de depósito:</strong> {{deposit_number}} <br>
+        <strong>Nombre del negocio:</strong> {{branch_name}} <br>
+        <strong>Tipo de moneda:</strong> {{currency}} <br>
+        <strong>Importe de depósito:</strong> {{amount}} <br>
+        <strong>Diferencia:</strong> {{diff}} <br>
+        <strong>Cuenta bancaria:</strong> {{bank_account}} <br>
+        <strong>Observaciones del área de auditoría:</strong> {{notes}} <br>
+        <strong>información auditoría:</strong> <a href="upload/{{audit_file}}">Descargar</a> <br>
+        <br>
+        <strong>Tipo de incidencia:</strong> {{problem_type}} <br>
+        <strong>Información adicional:</strong> {{extra_info}} <br>
+        <br>
+        <h1>Generar Acta de Descuento:</h1>
+        <p>Escribe el nombre del reponsable y presiona generar acta para generar el archivo.</p>
+        <form>
+            <label for="responsable">Responsable</label><br>
+            <input type="text" name="responsable"><br>
+            <input
+                type="button"
+                value="Generar Acta"
+                onclick="genDiscountFile(this.form.responsable.value)"
+            ><br>
+        </form>
+        <br>
+        <h1>Agregar Detalles:</h1>
+        <form action="/resolver-auditoria/{{id}}" method="post" enctype="multipart/form-data">
+            <label for="signed_discount_file">Acta de descuento:</label><br>
+            {{#signed_discount_file}}
+                Ya hay un archivo subido:
+                <a href="/upload/{{signed_discount_file}}">Ver</a><br>
+            {{/signed_discount_file}}
+            <input type="file" name="signed_discount_file" {{^signed_discount_file}}required{{/signed_discount_file}}><br>
+            <label for="deposit_voucher">Comprobante de depósito:</label><br>
+            {{#deposit_voucher}}
+                Ya hay un archivo subido:
+                <a href="/upload/{{deposit_voucher}}">Ver</a><br>
+            {{/deposit_voucher}}
+            <input type="file" name="deposit_voucher" {{^deposit_voucher}}required{{/deposit_voucher}}><br>
+            <label for="withdrawals_report">Reporte de retiros:</label><br>
+            {{#withdrawals_report}}
+                Ya hay un archivo subido:
+                <a href="/upload/{{withdrawals_report}}">Ver</a><br>
+            {{/withdrawals_report}}
+            <input type="file" name="withdrawals_report" {{^withdrawals_report}}required{{/withdrawals_report}}><br>
+            <label for="staff_checks">Checadas del personal:</label><br>
+            {{#staff_checks}}
+                Ya hay un archivo subido:
+                <a href="/upload/{{staff_checks}}">Ver</a><br>
+            {{/staff_checks}}
+            <input type="file" name="staff_checks" {{^staff_checks}}required{{/staff_checks}}><br>
+            <input type="submit" value="Guardar">
+        </form>
+   </div>
+    <script>
+        function genDiscountFile (responsable) {
+            if (responsable === '') {
+                alert('el campo de Responsable no puede estar vacio')
+            }
+            else {
+                window.open('/administracion','_blank')
+            }
+        }
+    </script>
+</body>
+</html>

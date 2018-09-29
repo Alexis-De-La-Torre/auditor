@@ -1,0 +1,62 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    line-height: 1.5;
+}
+
+#header {
+    color: #E8DDCB;
+    background-color: #033649;
+    padding: 1em;
+    text-align: center;
+    margin-bottom: 2em;
+}
+
+#header span {
+    margin-right: 1.5em;
+}
+
+#header button:first-child {
+    margin-right: 1.5em;
+}
+
+#container {
+    max-width: 1000px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 3em;
+}
+
+#container:last-child {
+    margin-bottom: 4em;
+}
+
+#signin {
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    width:30em;
+    height:18em;
+    margin-top: -9em;
+    margin-left: -9em;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+}
+
+td {
+    border: thin solid black;
+    padding: 0.8em;
+}
+
+tr:first-child {
+    font-weight: 700;
+}
+
+input, select, textarea {
+    margin-bottom: 1em;
+    padding: 0.1em;
+}

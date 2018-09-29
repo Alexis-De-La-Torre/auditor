@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Analizar Auditoria</title>
+    {{> header}}
+</head>
+<body>
+    {{> menu}}
+    <div id="container">
+        <h1>Detalles del caso:</h1>
+        <strong>Fecha de recepción:</strong> {{reception_date}} <br>
+        <strong>Fecha de venta:</strong> {{sale_date}} <br>
+        <strong>No. de depósito:</strong> {{deposit_number}} <br>
+        <strong>Nombre del negocio:</strong> {{branch_name}} <br>
+        <strong>Tipo de moneda:</strong> {{currency}} <br>
+        <strong>Importe de depósito:</strong> {{amount}} <br>
+        <strong>Diferencia:</strong> {{diff}} <br>
+        <strong>Cuenta bancaria:</strong> {{bank_account}} <br>
+        <strong>Observaciones del área de auditoría:</strong> {{notes}} <br>
+        <strong>información auditoría:</strong> <a href="/upload/{{audit_file}}">Descargar</a> <br>
+        <br>
+        <h1>Agregar detalles:</h1>
+        <form action="/analizar-auditoria" method="post">
+            <label for="problem_type">Tipo de incidencia</label><br>
+            <select name="problem_type" required>
+                <option value="faltante">faltante</option>
+                <option value="sobrante">sobrante</option>
+                <option value="sobrante no real">sobrante no real</option>
+                <option value="sin ficha">sin ficha</option>
+                <option value="error con número conocido">error con número conocido</option>
+                <option value="cuentas incorrectas">cuentas incorrectas</option>
+                <option value="dólares con pesos">dólares con pesos</option>
+                <option value="pesos con dólares">pesos con dólares</option>
+            </select><br>
+            <label for="status">Estado</label><br>
+            <select name="status" onchange="toggle_close_opts(this.value)" required>
+                <option value="investigacion">investigacion</option>
+                <option value="cerrado">cerrado</option>
+            </select><br>
+            <div id="close_opts" style="display:none;">
+                <label for="closing_reason">Causa de Cierre</label><br>
+                <select name="closing_reason" required>
+                    <option>descontado</option>
+                    <option>depositado comprobante</option>
+                    <option>no se identificó responsable</option>
+                    <option>sin comentarios</option>
+                    <option>corto punto de venta</option>
+                    <option>excedente punto de venta</option>
+                </select><br>
+                <label for="closing_notes">Motivo de Cierre</label><br>
+                <textarea name="closing_notes" required></textarea>
+            </div>
+            <label for="extra_info">Información adicional</label><br>
+            <textarea name="extra_info"></textarea><br>
+            <input type="submit" value="Guardar" onclick="return validate(this.form, {{id}})">
+        </form>
+    </div>
+    <script src="/scripts.js"></script>
+    <script>
+        var close_opts = document.getElementById('close_opts')
+
+        function validate (form, id) {
+            var status = form.status.value
+            var problem_type = form.problem_type.value
+            var extra_info = form.extra_info.value
+            var closing_reason = form.closing_reason.value
+            var closing_notes = form.closing_notes.value
+
+            var body = {
+                status,
+                problem_type,
+                extra_info,
+                closing_reason,
+                closing_notes,
+            }
+
+            post('/analizar-auditoria/{{id}}', body)
+
+            return false
+        }
+
+        function toggle_close_opts (value) {
+            if (value === 'cerrado') close_opts.style.display = 'block'
+            else close_opts.style.display = 'none'
+        }
+    </script>
+</body>
+</html>

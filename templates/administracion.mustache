@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Administracion</title>
+    {{> header}}
+</head>
+<body>
+    {{> menu}}
+    <div id="container">
+        <h1>Casos:</h1>
+        {{#has_audits}}
+            <table>
+                <tr>
+                    <td>ID</td>
+                    <td>Fecha de recepción</td>
+                    <td>Sucursal</td>
+                    <td>Cantidad</td>
+                    <td>Diferencia</td>
+                    <td>Estado</td>
+                    <td>Detalles</td>
+                    <td>Accion</td>
+                </tr>
+                {{#audits}}
+                    <tr>
+                        <td>{{id}}</td>
+                        <td>{{reception_date}}</td>
+                        <td>{{branch_name}}</td>
+                        <td>{{amount}} {{currency}}</td>
+                        <td>{{diff}} {{currency}}</td>
+                        <td>{{status}}</td>
+                        <td><a href="/auditoria/{{id}}">Detalles</a></td>
+                        {{#isPendienteAndConta}}
+                            <td><a href="/analizar-auditoria/{{id}}">Analizar</a></td>
+                        {{/isPendienteAndConta}}
+                        {{#isInvestAndGeren}}
+                            <td><a href="/resolver-auditoria/{{id}}">Resolver</a></td>
+                        {{/isInvestAndGeren}}
+                        {{#isRevicAndOp}}
+                            <td><a href="/revisar-auditoria/{{id}}">Revisar</a></td>
+                        {{/isRevicAndOp}}
+                        {{#isReadyToFinAndConta}}
+                            <td><a href="/finalizar-auditoria/{{id}}">Finalizar</a></td>
+                        {{/isReadyToFinAndConta}}
+                    </tr>
+                {{/audits}}
+                
+            </table>
+        {{/has_audits}}
+        {{^has_audits}}
+            <p>No hay ningun caso registrado.</p>
+        {{/has_audits}}
+        {{#isContaAux}}
+            <a href="/registrar-auditoria"><button>Registrar nuevo caso</button></a>
+        {{/isContaAux}}
+    </div>
+</body>
+</html>

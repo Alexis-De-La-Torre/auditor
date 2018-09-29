@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Prefinalizar Auditoria</title>
+    {{> header}}
+</head>
+<body>
+    {{> menu}}
+    <div id="container">
+        <h1>Detalles del Caso:</h1>
+        <strong>Fecha de recepción:</strong> {{reception_date}} <br>
+        <strong>Fecha de venta</strong>: {{sale_date}} <br>
+        <strong>No. de depósito:</strong> {{deposit_number}} <br>
+        <strong>Nombre del negocio:</strong> {{branch_name}} <br>
+        <strong>Tipo de moneda:</strong> {{currency}} <br>
+        <strong>Importe de depósito:</strong> {{amount}} <br>
+        <strong>Diferencia:</strong> {{diff}} <br>
+        <strong>Cuenta bancaria:</strong> {{bank_account}} <br>
+        <strong>Observaciones del área de auditoría:</strong> {{notes}} <br>
+        <strong>información auditoría:</strong> <a href="upload/{{audit_file}}">Descargar</a> <br>
+        <br>
+        <strong>Tipo de incidencia:</strong> {{problem_type}} <br>
+        <strong>Información adicional:</strong> {{extra_info}} <br>
+        <br>
+        <strong>Acta de descuento:</strong> <a href="/upload/{{signed_discount_file}}">Descargar</a><br>
+        <strong>Comprobante de depósito:</strong> <a href="/upload/{{deposit_voucher}}">Descargar</a><br>
+        <strong>Reporte de retiros:</strong> <a href="/upload/{{withdrawals_report}}">Descargar</a><br>
+        <strong>Checadas del personal:</strong> <a href="/upload/{{staff_checks}}">Descargar</a><br>
+        <br>
+        <h1>Agregar Detalles:</h1>
+        <form action="/revisar-auditoria/{{id}}" method="post">
+            <label for="status">Estado</label><br>
+            <select name="status">
+                <option value="información adicional">información adicional</option>
+                <option value="por descontar">por descontar</option>
+                <option value="depositado">depositado</option>
+            </select><br>
+            <input type="submit" value="Guardar">
+        </form>
+    </div>
+</body>
+</html>

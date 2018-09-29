@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar Auditoria</title>
+    {{> header}}
+</head>
+<body>
+    {{> menu}}
+    <div id="container">
+        <h1>Registrar caso:</h1>
+        <form action="/registrar-auditoria" method="post" enctype="multipart/form-data">
+            <label for="reception_date">Fecha de recepción</label><br>
+            <input type="date" name="reception_date" required><br>
+            <label for="sale_date">Fecha de venta</label><br>
+            <input type="date" name="sale_date" required><br>
+            <label for="deposit_number">No. de depósito</label><br>
+            <input type="text" name="deposit_number" required><br>
+            <label for="branch_id">Sucursal</label><br>
+            <select name="branch_id" required>
+                {{#branches}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/branches}}
+            </select><br>
+            <label for="currency">Moneda:</label><br>
+            <select name="currency" required>
+                <option value="MXN">MXN</option>
+                <option value="USD">USD</option>
+            </select><br>
+            <label for="amount">Importe de depósito:</label><br>
+            <input type="number" min="1" step="any" name="amount" required><br>
+            <label for="diff">Diferencia:</label><br>
+            <input type="number" min="1" step="any" name="diff" required><br>
+            <label for="bank_account">Cuenta bancaria:</label><br>
+            <input type="text" name="bank_account" required><br>
+            <label for="notes">Observaciones del área de auditoría:</label><br>
+            <textarea name="notes" required></textarea><br>
+            <label for="audit_file">Información de auditoría:</label><br>
+            <input type="file" name="audit_file" required><br>
+            <br>
+            <input type="submit" value="Guardar" onclick="return validate(this.form)">
+        </form>
+    </div>
+    <script src="validate.js"></script>
+</body>
+</html>
