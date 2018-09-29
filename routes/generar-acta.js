@@ -1,6 +1,5 @@
 module.exports = (app) => {
     app.get('/generar-acta', (req, res) => {
-        console.log(req.query)
         const msg = `
             <html>
             <head>
