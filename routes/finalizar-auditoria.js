@@ -46,7 +46,7 @@ module.exports = (app, db, ensureLogin, sendEmail) => {
             msg = `
                 Responsables: Jefe de Operaciones, Aux Contable y Jefe de Contabilidad<br>
                 Se cerro el reporte #${id}<br>
-                <a href="http://localhost:3001/auditoria/${id}">Ver</a>
+                <a href="${process.env.HOST}/auditoria/${id}">Ver</a>
             `
         }
         else {
@@ -57,8 +57,8 @@ module.exports = (app, db, ensureLogin, sendEmail) => {
             msg = `
                 Responsable: Gerencia<br>
                 ${subject}<br>
-                <a href="http://localhost:3001/auditoria/${id}">Ver</a><br>
-                <a href="http://localhost:3001/resolver-auditoria/${id}">Resolver</a>
+                <a href="${process.env.HOST}/auditoria/${id}">Ver</a><br>
+                <a href="${process.env.HOST}/resolver-auditoria/${id}">Resolver</a>
             `
         }
     

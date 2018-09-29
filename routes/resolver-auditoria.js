@@ -80,7 +80,7 @@ module.exports = (app, db, ensureLogin, sendEmail) => {
                 Responsable: Jefe de Operaciones<br>
                 <br>
                 ${subject}<br>
-                <a href="http://localhost:3001/revisar-auditoria/${id}">Revisar</a>
+                <a href="${process.env.HOST}/revisar-auditoria/${id}">Revisar</a>
             `
     
             Promise.all(promises)

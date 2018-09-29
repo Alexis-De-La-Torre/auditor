@@ -45,7 +45,7 @@ module.exports = (app, db, ensureLogin, sendEmail) => {
             Responsable: Jefe de Contabilidad<br>
             <br>
             ${subject}<br>
-            <a href="http://localhost:3001/finalizar-auditoria/${id}">Finalizar</a>
+            <a href="${process.env.HOST}/finalizar-auditoria/${id}">Finalizar</a>
         `
     
         db.promise().query(query, values)

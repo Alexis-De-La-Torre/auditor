@@ -69,7 +69,7 @@ module.exports = (app, db, ensureLogin, sendEmail) => {
                 Responsable: Jefe de Contabilidad<br>
                 <br>
                 existe un nuevo reporte de diferencias encontradas en el área de auditoría.<br>
-                <a href="http://localhost:3001/analizar-auditoria/${id}">Analizar</a>
+                <a href="${process.env.HOST}/analizar-auditoria/${id}">Analizar</a>
             `
     
             db.promise().query(query, values)
