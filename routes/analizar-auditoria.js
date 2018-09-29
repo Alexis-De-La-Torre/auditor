@@ -1,4 +1,4 @@
-module.exports = (app, db, ensureLogin, sendEmail) => {
+module.exports = (app, db, ensureLogin, sendEmail, authMsg) => {
     app.get('/analizar-auditoria/:id', ensureLogin, (req, res) => {
         if (req.user.permissions !== 'conta') {
             res.status(401)

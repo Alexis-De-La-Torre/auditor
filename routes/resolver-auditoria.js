@@ -3,7 +3,7 @@ const uuid = require('uuid/v4')
 var path = require('path')
 var fs = require('fs')
 
-module.exports = (app, db, ensureLogin, sendEmail) => {
+module.exports = (app, db, ensureLogin, sendEmail, authMsg) => {
     app.get('/resolver-auditoria/:id', ensureLogin, (req, res) => {
         if (req.user.permissions !== 'geren') {
             res.status(401)

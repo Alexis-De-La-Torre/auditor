@@ -4,7 +4,7 @@ const path = require('path')
 const fs = require('fs')
 const range = require('lodash.range')
 
-module.exports = (app, db, ensureLogin, sendEmail) => {
+module.exports = (app, db, ensureLogin, sendEmail, authMsg) => {
     app.get('/registrar-auditoria', ensureLogin, (req, res) => {
         if (req.user.permissions !== 'conta.aux') {
             res.status(401)
