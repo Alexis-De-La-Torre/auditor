@@ -100,6 +100,7 @@ require('./routes/analizar-auditoria')(app, db, ensureLogin, sendEmail)
 require('./routes/resolver-auditoria')(app, db, ensureLogin, sendEmail)
 require('./routes/revisar-auditoria')(app, db, ensureLogin, sendEmail)
 require('./routes/finalizar-auditoria')(app, db, ensureLogin, sendEmail)
+require('./routes/generar-acta')(app)
 
 app.use(express.static('public'))
 

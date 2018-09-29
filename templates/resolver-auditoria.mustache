@@ -31,7 +31,11 @@
             <input
                 type="button"
                 value="Generar Acta"
-                onclick="genDiscountFile(this.form.responsable.value)"
+                onclick="genDiscountFile(
+                    this.form.responsable.value,
+                    '{{{sale_date}}}',
+                    {{diff}}
+                )"
             ><br>
         </form>
         <br>
@@ -65,12 +69,16 @@
         </form>
    </div>
     <script>
-        function genDiscountFile (responsable) {
+        function genDiscountFile (responsable, saledate, diff) {
             if (responsable === '') {
                 alert('el campo de Responsable no puede estar vacio')
             }
             else {
-                window.open('/administracion','_blank')
+                alert(saledate)
+                var qs = '?name=' + encodeURIComponent(responsable)
+                    + '&saledate=' + encodeURIComponent(saledate)
+                    + '&diff=' + encodeURIComponent(diff)
+                window.open('/generar-acta' + qs,'_blank')
             }
         }
     </script>
